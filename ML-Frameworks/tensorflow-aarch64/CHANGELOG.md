@@ -16,6 +16,8 @@ where `YY` is the year, and `MM` the month of the increment.
 ### Added
 
 ### Changed
+ - Replaces patch to bump ComputeLibrary version [from v24.12 to v52.4.0](https://github.com/tensorflow/tensorflow/pull/100882) with [one to bump to v52.8.0](https://github.com/tensorflow/tensorflow/pull/113368)
+ - Updates TensorFlow hash to 25cf6546b44bdb3d3f17277a4b49b027dcdc0ae7 from nightly, Mar 23rd
 
 ### Removed
 

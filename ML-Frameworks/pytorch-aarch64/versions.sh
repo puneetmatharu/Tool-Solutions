@@ -9,15 +9,15 @@
 # For information on how to update the versions below, read the README.md.
 
 # get-source.sh deps
-PYTORCH_HASH=434b8cfdfac8ef7c741385561e340781ad76512f   # 2.12.0.dev20260227 from viable/strict, Feb 27th
-IDEEP_HASH=bbb9ffb9e0c401ca058b7f35a6ebe7d0e08ffd34     # From ideep_pytorch, Jan 16th
-ONEDNN_HASH=a83f8b4c7ca45fb339f3ecdf82895bc496941808    # From main, Feb 27th
-TORCH_AO_HASH=9bdc0ca87c1134b7c1dedaa9512233b726f22955  # From main, Feb 27th
-KLEIDIAI_HASH=98a6df72bdbb566bc7d8ba13d71991bcd94a8393  # v1.22.0 from main, Feb 19th
+PYTORCH_HASH=fb69aa6b76c7ddbcac13ac3dd8b14625f4352ffd   # 2.12.0.dev20260328 from viable/strict, Mar 28th
+IDEEP_HASH=cbbfd4ad7c5ac6d7683af571055e95c948d8cf54     # From ideep_pytorch, Mar 17th
+ONEDNN_HASH=abc14842394f985313191bc1e3c69bb7f8cecd23    # From main, Mar 27th
+TORCH_AO_HASH=d5814ae2edf434bb7927d3d992b33239e6e2aa1b  # From main, Mar 29th
+KLEIDIAI_HASH=6c544373d1731d2b74435fc02f8bad5f4631b0b1  # v1.23.0 from main, Mar 25th
 
 # build-wheel.sh deps
-ACL_VERSION="v52.8.0"
-OPENBLAS_VERSION="v0.3.30"
+ACL_VERSION="v52.8.0"   # Jan 23rd
+OPENBLAS_VERSION="d26960a21ec5da7f77377f28bd6e230060841ae0"  # Mar 27th
 
 # Dockerfile deps
-TORCHVISION_NIGHTLY="0.25.0.dev20260130"
+TORCHVISION_NIGHTLY="0.26.0.dev20260329"

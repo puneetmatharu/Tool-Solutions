@@ -123,7 +123,7 @@ if ! docker container inspect "$TORCH_BUILD_CONTAINER" >/dev/null 2>&1 ; then
     # Currently changes in these scripts will not be applied without a clean
     # build, which is not ideal for dev work. But we have to balance this with
     # extra time/network traffic when rebuilding many times.
-    docker_exec bash "${PYTORCH_CONTAINER_DIR}/.circleci/scripts/binary_populate_env.sh"
+    docker_exec bash "${PYTORCH_CONTAINER_DIR}/.ci/pytorch/binary_populate_env.sh"
 
     # Install scons for the Compute Library (ACL) build
     docker_exec ${PYTHON_CONTAINER_BIN}/python3 -m pip install scons==4.7.0

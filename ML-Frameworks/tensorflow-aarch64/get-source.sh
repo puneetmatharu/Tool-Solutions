@@ -8,7 +8,7 @@ source ../utils/git-utils.sh
 
 set -eux -o pipefail
 
-TENSORFLOW_HASH=535fc05dbac76cec4a446eec0bed866394167c05 # from nightly, Feb 25th
+TENSORFLOW_HASH=25cf6546b44bdb3d3f17277a4b49b027dcdc0ae7 # from nightly, Mar 23rd
 
 git-shallow-clone https://github.com/tensorflow/tensorflow.git $TENSORFLOW_HASH
 
@@ -17,8 +17,8 @@ git-shallow-clone https://github.com/tensorflow/tensorflow.git $TENSORFLOW_HASH
 
     # Apply TensorFlow WIP patches here
 
-    # https://github.com/tensorflow/tensorflow/pull/100882 - build(aarch64): Update Compute Library to 52.4.0
-    apply-github-patch tensorflow/tensorflow f15bec785f25dacaf9ae18250e499274e4ec7fb1
+    # https://github.com/tensorflow/tensorflow/pull/113368 - Bump Compute Library version from v24.12 to v52.8.0
+    apply-github-patch tensorflow/tensorflow 189698cf3b3dab5375508ff2e02f6aba3a586323
     # https://github.com/tensorflow/tensorflow/pull/102272 - Fix AArch64 CPUIDInfo init
     apply-github-patch tensorflow/tensorflow b6a9e1c1173d675533ffbb71c5eb36c7060ae2d0
 )
