@@ -14,6 +14,16 @@ where `YY` is the year, and `MM` the month of the increment.
 ## [unreleased]
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## [r26.04] 2026-04-10
+
+### Added
  - Adds PyTorch [PR #177009](https://github.com/pytorch/pytorch/pull/177009), to accelerate SDPA on Arm CPUs.
  - Adds oneDNN [PR #4911](https://github.com/uxlfoundation/oneDNN/pull/4911), to add LUT-based `gelu_erf` JIT implementations.
 
