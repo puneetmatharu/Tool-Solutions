@@ -21,6 +21,27 @@ where `YY` is the year, and `MM` the month of the increment.
 
 ### Fixed
 
+## [r26.04] 2026-04-10
+
+### Added
+ - Adds PyTorch [PR #177009](https://github.com/pytorch/pytorch/pull/177009), to accelerate SDPA on Arm CPUs.
+ - Adds oneDNN [PR #4911](https://github.com/uxlfoundation/oneDNN/pull/4911), to add LUT-based `gelu_erf` JIT implementations.
+
+### Changed
+ - Updates hashes for:
+   - `PYTORCH_HASH` to `fb69aa6b76c7ddbcac13ac3dd8b14625f4352ffd`, 2.12.0.dev20260328 from viable/strict, Mar 28th.
+   - `IDEEP_HASH` to `cbbfd4ad7c5ac6d7683af571055e95c948d8cf54`, from ideep_pytorch, Mar 17th.
+   - `ONEDNN_HASH` to `abc14842394f985313191bc1e3c69bb7f8cecd23`, from main, Mar 27th.
+   - `TORCH_AO_HASH` to `d5814ae2edf434bb7927d3d992b33239e6e2aa1b`, from main, Mar 29th.
+   - `KLEIDIAI_HASH` to `6c544373d1731d2b74435fc02f8bad5f4631b0b1`, v1.23.0 from main, Mar 25th.
+ - Updates `OPENBLAS_VERSION` from v0.3.30 to `d26960a21ec5da7f77377f28bd6e230060841ae0` from main, Mar 27th.
+ - Updates `torchvision` from 0.25.0.dev20260130 to 0.26.0.dev20260329.
+
+### Removed
+ - Removes PyTorch [PR #159859](https://github.com/pytorch/pytorch/pull/159859), which added PoC LUT optimisation for GELU bf16 operators.
+
+### Fixed
+
 ## [r26.03] 2026-03-16
 https://github.com/ARM-software/Tool-Solutions/tree/r26.03
 

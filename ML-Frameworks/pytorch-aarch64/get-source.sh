@@ -24,19 +24,14 @@ git-shallow-clone https://github.com/pytorch/pytorch.git $PYTORCH_HASH
     # https://github.com/pytorch/pytorch/pull/170600 - Gate deletion of clean-up steps in build_common.sh
     apply-github-patch pytorch/pytorch e368ec2693b8b2b8ba35d0913f1d663ba2fdc804
 
-    # FIXME: Temporarily disabled; to be updated in a later PR
-    # # https://github.com/pytorch/pytorch/pull/160184 - Draft: separate reqs for manywheel build and pin
-    # # Note: as part of this patch, setuptools is pinned to ~= 78.1.1 which is not affected by
-    # # CVE-2025-47273 and CVE-2024-6345
-    # apply-github-patch pytorch/pytorch 4d344570e5a114fa522e3370c5d59161e2ed8619
-
-    # https://github.com/pytorch/pytorch/pull/159859 - PoC LUT optimisation for GELU bf16 operators
-    apply-github-patch pytorch/pytorch ebcc874e317f9563ab770fc5c27df969e0438a5e
-
     # https://github.com/pytorch/pytorch/pull/167328 - Build cpuinfo into c10 shared library
     apply-github-patch pytorch/pytorch 7c053dd1582b778c81101dd452708c4ec6e58233
     apply-github-patch pytorch/pytorch b1782bbe0eda5957870e2f6e95b8f167e04843cb
     apply-github-patch pytorch/pytorch 337925aed2babb3ef7808f78536bbbc9df346a4f
+
+    # https://github.com/pytorch/pytorch/pull/177009 - Accelerate SDPA on Arm CPUs: Unroll exp_sum and max_mul kernels
+    apply-github-patch pytorch/pytorch f6a6cc94e92636902acbbe443d00cec4a8efa12d
+    apply-github-patch pytorch/pytorch 253a1ea6db210c01178dd365922eb49fe4892fe7
 
     # Remove deps that we don't need for manylinux AArch64 CPU builds before fetching.
     # Only used when jni.h is present (see .ci/pytorch/build.sh:116), which is not the case for manylinux
@@ -78,6 +73,9 @@ git-shallow-clone https://github.com/pytorch/pytorch.git $PYTORCH_HASH
         (
             cd mkl-dnn
             git fetch origin $ONEDNN_HASH && git clean -f && git checkout -f FETCH_HEAD
+
+            # https://github.com/uxlfoundation/oneDNN/pull/4911 - cpu: aarch64: add LUT-based gelu_erf JIT implementations #4911
+            apply-github-patch uxlfoundation/oneDNN 86661869d4267b49db667ed7946eefba4e44d2c0
         )
     )
     (

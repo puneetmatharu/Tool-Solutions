@@ -60,7 +60,10 @@ if ! docker container inspect "$TORCH_BUILD_CONTAINER" >/dev/null 2>&1 ; then
     docker_exec rm -rf /acl
 
     docker_exec python${PYTHON_VERSION} -m venv ${TEST_VENV_CONTAINER_DIR}
-    docker_exec bash -c "source ${TEST_VENV_CONTAINER_DIR}/bin/activate && pip install typing_extensions torch wheel numpy --no-deps"
+    docker_exec bash -c "
+        source ${TEST_VENV_CONTAINER_DIR}/bin/activate && \
+        pip install typing_extensions wheel numpy --no-deps && \
+        pip install torch --index-url https://download.pytorch.org/whl/cpu"
 
     echo "Storing torch build container id in $TORCH_BUILD_CONTAINER_ID_FILE for reuse: $TORCH_BUILD_CONTAINER"
     echo "$TORCH_BUILD_CONTAINER" > "$TORCH_BUILD_CONTAINER_ID_FILE"
