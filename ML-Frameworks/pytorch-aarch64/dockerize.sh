@@ -8,18 +8,17 @@ source ./versions.sh
 
 set -eux -o pipefail
 
-help_str="dockerize.sh takes a PyTorch wheel as the first argument and an ao wheel
-as the second argument. It installs the wheel inside a Docker container with examples
-and requirements. The docker image will then be run unless you pass in the optional
---build-only argument"
+help_str="dockerize.sh takes a PyTorch wheel as its one and only argument. It installs
+the wheel inside a Docker container with examples and requirements. The docker image
+will then be run unless you pass in the optional --build-only argument"
 
-if [ "$#" -lt 2 ]; then
+if [ "$#" -lt 1 ]; then
     echo $help_str
     exit 1
 fi
 
-if ! [ -e "$1" ] || ! [ -e "$2" ]; then
-    echo "I couldn't find wheels at $1 and $2"
+if ! [ -e "$1" ]; then
+    echo "I couldn't find wheel at $1"
     echo $help_str
     exit 1
 fi
@@ -30,7 +29,7 @@ docker buildx \
     --build-context rootdir=../.. \
     --build-arg DOCKER_IMAGE_MIRROR \
     --build-arg TORCH_WHEEL=$1 \
-    --build-arg TORCH_AO_WHEEL=$2 \
+    --build-arg TORCHAO_NIGHTLY="${TORCHAO_NIGHTLY}" \
     --build-arg TORCHVISION_NIGHTLY="${TORCHVISION_NIGHTLY}" \
     .
 

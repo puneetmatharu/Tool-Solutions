@@ -72,8 +72,8 @@ adding your patch to `utils/patch_cache` with the name
 
 ### Flags useful for development
 - `--use-existing-sources` skips `get-source.sh` and just builds
-- `--force` overwrites sources
-- `--wheel-only` build just the torch wheel (no torchao or Docker image)
+- `--fresh` overwrites sources
+- `--wheel-only` build just the torch wheel (no Docker image)
 
 ### Updating pinned versions
 
@@ -99,9 +99,6 @@ Note: use the `CommitDate` for the trailing comments unless otherwise specified 
 - oneDNN: https://github.com/uxlfoundation/oneDNN/tree/main
   - Use the latest commit on this branch.
 
-- TorchAO: https://github.com/pytorch/ao/tree/main
-  - Use the latest commit on this branch.
-
 - KleidiAI: https://github.com/ARM-software/kleidiai/tree/main
   - Use the latest commit on this branch. Use the project version from the `CMakeLists.txt` to set the version in the trailing comment.
 
@@ -123,6 +120,11 @@ For these dependencies, you should assign the latest nightly wheel version to th
   - Pick the newest wheel matching: `+cpu`, the Python ABI (e.g. `cp312` for Python 3.12), `manylinux_2_28_aarch64.whl`.
     Record the dev version from the filename.
   - Example: `torchvision-0.26.0.dev20260215+cpu-cp312-cp312-manylinux_2_28_aarch64.whl` → `0.26.0.dev20260215`
+
+- TorchAO: https://download.pytorch.org/whl/nightly/torchao/
+  - Pick the newest wheel matching: `+cpu`, `manylinux_2_28_aarch64.whl`.
+    Record the dev version from the filename.
+  - Example: `torchao-0.18.0.dev20260424+cpu-cp310-abi3-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl` → `0.18.0.dev20260424`
 
 #### After updating `versions.sh`
 

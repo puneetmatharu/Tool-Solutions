@@ -14,10 +14,12 @@ where `YY` is the year, and `MM` the month of the increment.
 ## [unreleased]
 
 ### Added
+ - TorchAO installation via nightly AArch64 wheel in Dockerfile
 
 ### Changed
 
 ### Removed
+ - TorchAO wheel build from source
 
 ### Fixed
 
