@@ -13,8 +13,12 @@ ARG DOCKER_IMAGE_MIRROR=""
 FROM ${DOCKER_IMAGE_MIRROR}${BASE_IMAGE} AS workshop
 
 ARG TORCH_WHEEL
-ARG TORCH_AO_WHEEL
+ARG TORCHAO_NIGHTLY
 ARG TORCHVISION_NIGHTLY
+
+# Make sure build args are provided
+RUN test -n "${TORCH_WHEEL}"
+RUN test -n "${TORCHAO_NIGHTLY}" && test -n "${TORCHVISION_NIGHTLY}"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DOCKER_USER=debian
@@ -54,13 +58,11 @@ COPY --chown=$DOCKER_USER:$DOCKER_USER requirements.txt .
 RUN uv pip install -r requirements.txt
 
 # Bring wheels into image
-RUN test -n "${TORCH_WHEEL}" && test -n "${TORCH_AO_WHEEL}"
 COPY --chown=$DOCKER_USER:$DOCKER_USER ${TORCH_WHEEL} /home/$DOCKER_USER/
-COPY --chown=$DOCKER_USER:$DOCKER_USER ${TORCH_AO_WHEEL} /home/$DOCKER_USER/
 
 # Install wheels
 RUN set -eux && uv pip install --no-deps "$(basename "$TORCH_WHEEL")" && rm "$(basename "$TORCH_WHEEL")"
-RUN set -eux && uv pip install --no-deps "$(basename "$TORCH_AO_WHEEL")" && rm "$(basename "$TORCH_AO_WHEEL")"
+RUN uv pip install --pre torchao==${TORCHAO_NIGHTLY} --index-url https://download.pytorch.org/whl/nightly/cpu --no-deps
 RUN uv pip install --pre torchvision==${TORCHVISION_NIGHTLY} --index-url https://download.pytorch.org/whl/nightly/cpu --no-deps
 
 # Copy examples/tests into image
