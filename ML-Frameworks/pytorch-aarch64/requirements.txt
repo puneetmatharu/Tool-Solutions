@@ -39,4 +39,4 @@ tqdm~=4.66.5
 transformers~=4.55.2  # >= 4.50.0 due to CVE-2025-2099
 typing_extensions~=4.12.2
 tzdata==2024.2
-urllib3~=2.6.3
+urllib3~=2.7.0
