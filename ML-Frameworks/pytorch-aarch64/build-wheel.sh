@@ -144,13 +144,13 @@ docker_exec bash "${PYTORCH_CONTAINER_DIR}/.ci/pytorch/binary_populate_env.sh"
 # erroneously copied to results, so we clear the directory to be sure
 docker_exec rm -rf "${PYTORCH_CONTAINER_DIR}/dist"
 
-# We set OVERRIDE_PACKAGE_VERSION to be based on the date of the latest torch
+# We set PYTORCH_BUILD_VERSION to be based on the date of the latest torch
 # commit, this allows us to also install the matching torch* packages, set in
 # the Dockerfile. This is what PyTorch does in its nightly pipeline, see
 # pytorch/.ci/aarch64_linux/aarch64_wheel_ci_build.py for this logic.
 build_date=$(cd "$PYTORCH_LOCAL_DIR" && git show -s --format=%cs "${PYTORCH_HASH}" | tr -d '-')
 version=$(tr -d "[:space:]" < "${PYTORCH_LOCAL_DIR}/version.txt")
-OVERRIDE_PACKAGE_VERSION="${version%??}.dev${build_date}${TORCH_RELEASE_ID:+"+$TORCH_RELEASE_ID"}"
+PYTORCH_BUILD_VERSION="${version%??}.dev${build_date}${TORCH_RELEASE_ID:+"+$TORCH_RELEASE_ID"}"
 
 # Build the wheel!
 docker_exec bash -lc "
@@ -158,6 +158,7 @@ docker_exec bash -lc "
   BUILD_TEST=0 \
   DO_SETUP_PY_CLEAN_BEFORE_BUILD=0 \
   WIPE_RH_CUDA_AFTER_BUILD=0 \
-  OVERRIDE_PACKAGE_VERSION=$OVERRIDE_PACKAGE_VERSION \
+  PYTORCH_BUILD_NUMBER=0 \
+  PYTORCH_BUILD_VERSION=${PYTORCH_BUILD_VERSION} \
   bash ${PYTORCH_CONTAINER_DIR}/.ci/manywheel/build.sh
 "
